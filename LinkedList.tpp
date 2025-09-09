@@ -56,6 +56,8 @@ template <typename T>
 T LinkedList<T>::getElement(int position) const {
     // TODO
 
+    position++;
+
     if(head == nullptr){
         throw string("Error getElement: list is empty");
     }
@@ -63,7 +65,12 @@ T LinkedList<T>::getElement(int position) const {
     Node* ptr = head;
 
     for(int i = 0; i < position - 1; i++){
-        ptr = ptr->next;
+        if(ptr->next != nullptr){
+            ptr = ptr->next;
+        }
+        else{
+            throw string("Error getElement: position out of bounds");
+        }
     }
 
     return ptr->value;
@@ -84,41 +91,44 @@ void LinkedList<T>::replace(int position, const T& elem) {
     // TODO
     // set prev->next = elem
     // set elem->next = after
+    // delete node at position
+
+    position++;
+
+    //position at 1 (base case)
+    if(position == 1){
+        Node* old = head;
+        Node* rep = new Node;
+        rep->value = elem;
+        rep->next = old->next;
+        head = rep;
+        delete old;
+
+        return;
+    }
 
     // create node with value elem
     Node* rep = new Node;
     rep->value = elem;
 
-    if(head == nullptr && position > 0){
-        throw string("Error replace: out of bounds, list is empty");
-    }
-    else if (position == 0){
-        Node* after = head->next;
-        head = rep;
-        head->next = after;
-        return;
-    }
-
     Node* prev = head;
-    Node* after = nullptr;
-    Node* curr = head;
 
-    // get to the elemtn before the potision, grab pointer
-    for(int i = 1; i < position-1; i++){
-       prev = prev->next; 
+    //go to node before position
+    for(int i = 1; i < position - 1; i++){
+        if(prev->next == nullptr){
+            throw string("Error replace: out of bounds index");
+        }
+        prev = prev->next;
     }
 
-    // go to elem after position, grab pointer
-
-    if(prev->next != nullptr){
-        rep->next = curr->next->next;
-    }
-    else{
-        // not sure if this is the proper way 
-        throw string("replace: position out of bounds");
+    Node* target = prev->next;
+    if(target == nullptr){
+        throw string("Error replace: out of bounds index");
     }
 
     prev->next = rep;
+    rep->next = target->next;
+    delete target;
 }
 
 template <typename T>
