@@ -1,0 +1,31 @@
+./driver
+append tests: 5 elements
+apended element with value 1
+apended element with value 2
+apended element with value 3
+apended element with value 4
+apended element with value 5
+get element tests: postitions 0-4
+element 0 is: 1
+element 1 is: 2
+element 2 is: 3
+element 3 is: 4
+element 4 is: 5
+get element out of bounds test: postitions 5
+Error getElement: position out of bounds
+linked list clear test: non-empty list
+linked list cleared!
+Error getElement: list is empty
+linked list clear test: non-empty list
+linked list cleared!
+apended element with value 1
+apended element with value 2
+apended element with value 3
+apended element with value 4
+apended element with value 5
+replace test: in bounds
+element 4 is: 5
+element 4 has been changed to value 6
+element 4 is: 6
+replace test: out of bounds (index 5)
+Error replace: out of bounds index
