@@ -23,6 +23,7 @@ int main(){
 
 	// append test
 	// these test append an element to the linked list
+	cout << "append tests: 5 elements" << endl;
 	l.append(1);
 	cout << "apended element with value 1" << endl;
 	l.append(2);
@@ -35,6 +36,7 @@ int main(){
 	cout << "apended element with value 5" << endl;
 
 	// getElement test: in bounds
+	cout << "get element tests: postitions 0-4" << endl;
 	cout << "element 0 is: " << l.getElement(0) << endl;
 	cout << "element 1 is: " << l.getElement(1) << endl;
 	cout << "element 2 is: " << l.getElement(2) << endl;
@@ -42,14 +44,16 @@ int main(){
 	cout << "element 4 is: " << l.getElement(4) << endl;
 
 	// getElement test: out of  bounds
+	cout << "get element out of bounds test: postitions 5" << endl;
     try {
-        l.getElement(6);
+        l.getElement(5);
     }
     catch (const string& e) {
         cout << e << endl;
     }
 
 	// clear test
+	cout << "linked list clear test: non-empty list" << endl;
 	l.clear();
 	cout << "linked list cleared!" << endl;
     try {
@@ -60,21 +64,28 @@ int main(){
     }
 
 	//testing if the function still works on an empty linked list
+	cout << "linked list clear test: non-empty list" << endl;
 	l.clear();
+	cout << "linked list cleared!" << endl;
 
 	
 	l.append(1);
+	cout << "apended element with value 1" << endl;
 	l.append(2);
+	cout << "apended element with value 2" << endl;
 	l.append(3);
+	cout << "apended element with value 3" << endl;
 	l.append(4);
+	cout << "apended element with value 4" << endl;
 	l.append(5);
+	cout << "apended element with value 5" << endl;
 
-	cout << "element 5 is: " << l.getElement(4) << endl;
 	
 	// replace test: in bounds
-	
 	int const TEST = 6;
 
+	cout << "replace test: in bounds" << endl;
+	cout << "element 4 is: " << l.getElement(4) << endl;
     try {
 		l.replace(4, TEST);
 		cout << "element 4 has been changed to value " << TEST << endl;
@@ -86,6 +97,7 @@ int main(){
 	cout << "element 4 is: " << l.getElement(4) << endl;
 
 	// replace test: out of bounds
+	cout << "replace test: out of bounds (index 5)" << endl;
 	int const TEST2 = 7;
     try {
 		l.replace(5, TEST);
